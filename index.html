@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="todo-container">
+    <h1>🌟 To-Do List</h1>
+    <div class="input-group">
+      <input type="text" id="todo-input" placeholder="Enter a new task...">
+      <button onclick="addTodo()">Add</button>
+    </div>
+    <ul id="todo-list"></ul>
+  </div>
+
+  <script>
+    function addTodo() {
+      const input = document.getElementById('todo-input');
+      const task = input.value.trim();
+      if (task !== "") {
+        const li = document.createElement('li');
+
+        const taskSpan = document.createElement('span');
+        taskSpan.textContent = task;
+        taskSpan.className = 'task-text';
+
+        const doneBtn = document.createElement('button');
+        doneBtn.textContent = '✓';
+        doneBtn.className = 'done-btn';
+        doneBtn.onclick = function () {
+          li.remove();
+        };
+
+        li.appendChild(taskSpan);
+        li.appendChild(doneBtn);
+        document.getElementById('todo-list').appendChild(li);
+        input.value = "";
+      }
+    }
+  </script>
+</body>
+</html>
